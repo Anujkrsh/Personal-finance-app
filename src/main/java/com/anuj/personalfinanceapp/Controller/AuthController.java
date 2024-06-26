@@ -56,9 +56,9 @@ public class AuthController {
 
         // Get user details
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-
+        User user = userService.findByUsername(userDetails.getUsername()).get();
         // Generate JWT token
-        String jwt = jwtUtil.generateToken(userDetails.getUsername());
+        String jwt = jwtUtil.generateToken(userDetails.getUsername(),user.getId());
 
         // Return JWT token in response
         return ResponseEntity.ok(new AuthResponse(jwt));
