@@ -36,13 +36,14 @@ public class JwtUtil {
         return extractExpiration(token).before(new Date());
     }
 
-    public String generateToken(String username) {
-        return createToken(username);
+    public String generateToken(String username,long id) {
+        return createToken(username,id);
     }
 
-    private String createToken(String subject) {
+    private String createToken(String subject,long id) {
         return Jwts.builder()
                 .setSubject(subject)
+                .claim("user_id",id)
                 .setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 3)) // 3 Minute Expiry
                 .signWith(SignatureAlgorithm.HS256, secret)

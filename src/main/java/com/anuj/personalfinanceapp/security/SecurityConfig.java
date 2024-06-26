@@ -40,6 +40,7 @@ public class SecurityConfig {
                         authorizeRequests
                                 .requestMatchers( "/api-docs.yaml", "/swagger-ui/*").permitAll()
                                 .requestMatchers("/api/auth/**").permitAll()
+                                .requestMatchers("/api/expenses/**").authenticated()
                                 .anyRequest().authenticated()
                 )
                 .sessionManagement(sessionManagement ->
