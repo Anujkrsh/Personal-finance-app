@@ -1,10 +1,16 @@
 package com.anuj.personalfinanceapp.model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Entity
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "expenses")
 public class Expense {
     @Id
@@ -16,9 +22,6 @@ public class Expense {
 
     @Column(nullable = false)
     private Double amount;
-
-    @Column(nullable = false)
-    private String category;
 
     @Column(nullable = false)
     private String date;

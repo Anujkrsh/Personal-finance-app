@@ -15,6 +15,7 @@ public class JwtUtil {
     @Value("${jwt.secret}")
     private String secret;
 
+
     public String extractUsername(String token) {
         return extractClaim(token, Claims::getSubject);
     }
@@ -26,6 +27,11 @@ public class JwtUtil {
     public <T> T extractClaim(String token, Function<Claims, T> claimsResolver) {
         final Claims claims = extractAllClaims(token);
         return claimsResolver.apply(claims);
+    }
+    public Long extractUserId(String token) {
+        Claims claims = extractAllClaims(token);
+        Long userId = claims.get("user_id", Long.class);
+        return userId;
     }
 
     private Claims extractAllClaims(String token) {

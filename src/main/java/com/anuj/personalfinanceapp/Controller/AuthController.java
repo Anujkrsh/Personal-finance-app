@@ -50,18 +50,23 @@ public class AuthController {
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody AuthRequest authRequest) throws AuthenticationException {
-        Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(authRequest.getUsername(), authRequest.getPassword())
-        );
+        try {
+            Authentication authentication = authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(authRequest.getUsername(), authRequest.getPassword())
+            );
 
-        // Get user details
-        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-        User user = userService.findByUsername(userDetails.getUsername()).get();
-        // Generate JWT token
-        String jwt = jwtUtil.generateToken(userDetails.getUsername(),user.getId());
 
-        // Return JWT token in response
-        return ResponseEntity.ok(new AuthResponse(jwt));
+            // Get user details
+            UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+            User user = userService.findByUsername(userDetails.getUsername()).get();
+            // Generate JWT token
+            String jwt = jwtUtil.generateToken(userDetails.getUsername(), user.getId());
+
+            // Return JWT token in response
+            return ResponseEntity.ok(new AuthResponse(jwt));
+        }catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
 
     @GetMapping("/logout")
