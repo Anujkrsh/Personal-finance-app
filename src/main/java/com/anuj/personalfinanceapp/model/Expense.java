@@ -24,6 +24,9 @@ public class Expense {
     private Double amount;
 
     @Column(nullable = false)
+    private String item;
+
+    @Column(nullable = false)
     private String date;
 
     @Column(nullable = true)

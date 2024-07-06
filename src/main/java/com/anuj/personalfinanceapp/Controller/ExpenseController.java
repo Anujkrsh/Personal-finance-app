@@ -2,6 +2,7 @@ package com.anuj.personalfinanceapp.Controller;
 
 import com.anuj.personalfinanceapp.dto.ExpenseRequestDto;
 import com.anuj.personalfinanceapp.model.Expense;
+import com.anuj.personalfinanceapp.repository.ExpenseRepository;
 import com.anuj.personalfinanceapp.service.ExpenseService;
 import com.anuj.personalfinanceapp.util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/expenses")
@@ -21,10 +23,12 @@ public class ExpenseController {
 
     @Autowired
     private JwtUtil jwtUtil;
+    @Autowired
+    private ExpenseRepository expenseRepository;
 
 
     @PostMapping("/Create")
-    private ResponseEntity<?> createExpense(@RequestBody ExpenseRequestDto expenseRequest, @RequestHeader("Authorization") String authToken) {
+    public ResponseEntity<?> createExpense(@RequestBody ExpenseRequestDto expenseRequest, @RequestHeader("Authorization") String authToken) {
         if(expenseRequest.getAmount() == null) {
             return ResponseEntity.badRequest().body("amount & item are required");
         }
@@ -37,12 +41,28 @@ public class ExpenseController {
             Expense expense = Expense.builder().userId(uuid).
                     amount(expenseRequest.getAmount()).description(description)
                     .date(formattedDateTime)
-                    .build();
+                    .item(expenseRequest.getItem()).build();
             expenseService.save(expense);
             return new ResponseEntity<>("Expense Saved for the User", HttpStatusCode.valueOf(201));
         }catch(Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
+
+    @GetMapping("/Fetch")
+    public ResponseEntity<?> FetchExpense(@RequestHeader("Authorization") String authToken) {
+        try {
+            long uuid = jwtUtil.extractUserId(authToken.substring(7));
+            List<Expense> expense=expenseRepository.findByUserId(uuid);
+            if(!expense.isEmpty()) {
+                return ResponseEntity.ok(expense);
+            }else{
+                return ResponseEntity.badRequest().body("Expense Not Found");
+            }
+        }catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
 
 }
