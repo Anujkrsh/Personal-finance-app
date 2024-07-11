@@ -1,6 +1,6 @@
-package com.anuj.personalfinanceapp.security;
+package com.olivedevs.personalfinanceapp.security;
 
-import com.anuj.personalfinanceapp.util.JwtUtil;
+import com.olivedevs.personalfinanceapp.util.JwtUtil;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.MalformedJwtException;
 import io.jsonwebtoken.SignatureException;

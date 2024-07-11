@@ -1,4 +1,4 @@
-package com.anuj.personalfinanceapp.model;
+package com.olivedevs.personalfinanceapp.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

@@ -1,4 +1,4 @@
-package com.anuj.personalfinanceapp.util;
+package com.olivedevs.personalfinanceapp.util;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

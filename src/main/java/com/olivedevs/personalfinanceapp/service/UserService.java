@@ -1,14 +1,13 @@
-package com.anuj.personalfinanceapp.service;
+package com.olivedevs.personalfinanceapp.service;
 
 import java.util.Optional;
 
-import com.anuj.personalfinanceapp.model.User;
-import com.anuj.personalfinanceapp.repository.UserRepository;
+import com.olivedevs.personalfinanceapp.model.User;
+import com.olivedevs.personalfinanceapp.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 

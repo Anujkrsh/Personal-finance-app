@@ -1,7 +1,7 @@
-package com.anuj.personalfinanceapp.service;
+package com.olivedevs.personalfinanceapp.service;
 
-import com.anuj.personalfinanceapp.model.Expense;
-import com.anuj.personalfinanceapp.repository.ExpenseRepository;
+import com.olivedevs.personalfinanceapp.model.Expense;
+import com.olivedevs.personalfinanceapp.repository.ExpenseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

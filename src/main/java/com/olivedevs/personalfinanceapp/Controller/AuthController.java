@@ -1,13 +1,13 @@
-package com.anuj.personalfinanceapp.Controller;
+package com.olivedevs.personalfinanceapp.Controller;
 
 
 import java.util.Optional;
 
-import com.anuj.personalfinanceapp.dto.AuthRequest;
-import com.anuj.personalfinanceapp.dto.AuthResponse;
-import com.anuj.personalfinanceapp.model.User;
-import com.anuj.personalfinanceapp.service.UserService;
-import com.anuj.personalfinanceapp.util.JwtUtil;
+import com.olivedevs.personalfinanceapp.dto.AuthRequest;
+import com.olivedevs.personalfinanceapp.dto.AuthResponse;
+import com.olivedevs.personalfinanceapp.model.User;
+import com.olivedevs.personalfinanceapp.service.UserService;
+import com.olivedevs.personalfinanceapp.util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;

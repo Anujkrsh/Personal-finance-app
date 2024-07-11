@@ -1,4 +1,4 @@
-package com.anuj.personalfinanceapp.model;
+package com.olivedevs.personalfinanceapp.model;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 import jakarta.persistence.*;

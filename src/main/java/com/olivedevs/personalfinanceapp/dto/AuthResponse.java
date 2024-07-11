@@ -1,4 +1,4 @@
-package com.anuj.personalfinanceapp.dto;
+package com.olivedevs.personalfinanceapp.dto;
 
 import lombok.Data;
 

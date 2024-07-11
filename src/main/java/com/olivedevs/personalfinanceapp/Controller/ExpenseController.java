@@ -1,10 +1,10 @@
-package com.anuj.personalfinanceapp.Controller;
+package com.olivedevs.personalfinanceapp.Controller;
 
-import com.anuj.personalfinanceapp.dto.ExpenseRequestDto;
-import com.anuj.personalfinanceapp.model.Expense;
-import com.anuj.personalfinanceapp.repository.ExpenseRepository;
-import com.anuj.personalfinanceapp.service.ExpenseService;
-import com.anuj.personalfinanceapp.util.JwtUtil;
+import com.olivedevs.personalfinanceapp.dto.ExpenseRequestDto;
+import com.olivedevs.personalfinanceapp.model.Expense;
+import com.olivedevs.personalfinanceapp.repository.ExpenseRepository;
+import com.olivedevs.personalfinanceapp.service.ExpenseService;
+import com.olivedevs.personalfinanceapp.util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;

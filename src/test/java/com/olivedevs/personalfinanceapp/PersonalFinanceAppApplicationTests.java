@@ -1,4 +1,4 @@
-package com.anuj.personalfinanceapp;
+package com.olivedevs.personalfinanceapp;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

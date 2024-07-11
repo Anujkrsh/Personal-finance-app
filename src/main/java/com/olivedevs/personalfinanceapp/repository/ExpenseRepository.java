@@ -1,6 +1,6 @@
-package com.anuj.personalfinanceapp.repository;
+package com.olivedevs.personalfinanceapp.repository;
 
-import com.anuj.personalfinanceapp.model.Expense;
+import com.olivedevs.personalfinanceapp.model.Expense;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

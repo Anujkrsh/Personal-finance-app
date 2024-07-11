@@ -1,4 +1,4 @@
-package com.anuj.personalfinanceapp.security;
+package com.olivedevs.personalfinanceapp.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
