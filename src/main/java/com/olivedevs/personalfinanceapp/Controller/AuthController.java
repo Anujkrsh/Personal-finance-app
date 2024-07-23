@@ -1,8 +1,6 @@
 package com.olivedevs.personalfinanceapp.Controller;
 
-
 import java.util.Optional;
-
 import com.olivedevs.personalfinanceapp.dto.AuthRequest;
 import com.olivedevs.personalfinanceapp.dto.AuthResponse;
 import com.olivedevs.personalfinanceapp.model.User;
@@ -54,8 +52,6 @@ public class AuthController {
             Authentication authentication = authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(authRequest.getUsername(), authRequest.getPassword())
             );
-
-
             // Get user details
             UserDetails userDetails = (UserDetails) authentication.getPrincipal();
             User user = userService.findByUsername(userDetails.getUsername()).get();

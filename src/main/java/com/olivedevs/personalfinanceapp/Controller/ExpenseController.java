@@ -81,7 +81,7 @@ public class ExpenseController {
                 return ResponseEntity.badRequest().body("Expense Not Found");
             }else{
                 expenseToEdit= Expense.builder().amount(expenseRequestDto.getAmount()).date(formattedDateTime).
-                        item(expenseRequestDto.getItem())
+                        item(expenseRequestDto.getItem()).id(id).userId(uuid)
                         .description(expenseRequestDto.getDescription()).build();
                 expenseRepository.save(expenseToEdit);
                 return ResponseEntity.ok(expenseToEdit);
