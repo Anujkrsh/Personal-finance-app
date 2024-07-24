@@ -32,7 +32,7 @@ public class IncomeService {
         return incomeRepository.findById(userId);
     }
 
-    public void delete(int id) {
+    public void delete(Long id) {
         incomeRepository.delete(id);
     }
 

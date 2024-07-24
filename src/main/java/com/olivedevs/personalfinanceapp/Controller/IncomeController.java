@@ -9,6 +9,8 @@ import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
+
 @RestController
 @RequestMapping("/api/income")
 public class IncomeController {
@@ -36,7 +38,7 @@ public class IncomeController {
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<?> deleteIncome(@RequestParam int id, @RequestHeader("Authorization") String authToken){
+    public ResponseEntity<?> deleteIncome(@RequestParam Long id, @RequestHeader("Authorization") String authToken){
         if(id==0){
             return new ResponseEntity<>("Please provide valid input", HttpStatusCode.valueOf(400));
         }
@@ -48,6 +50,34 @@ public class IncomeController {
             return new ResponseEntity<>("Something Went Wrong "+ex.getMessage(), HttpStatusCode.valueOf(400));
         }
     }
+
+    @GetMapping("/get")
+    public ResponseEntity<?> getIncome( @RequestHeader("Authorization") String authToken){
+        try {
+            Long uuid = jwtUtil.extractUserId(authToken.substring(7));
+            Optional<Income> income =incomeService.findById(uuid);
+            return ResponseEntity.ok(income);
+        }catch (Exception ex){
+            return new ResponseEntity<>("Something Went Wrong "+ex.getMessage(), HttpStatusCode.valueOf(400));
+        }
+    }
+
+    @PutMapping("/update")
+    public ResponseEntity<?> updateIncome(long incomeId, @RequestHeader("Authorization") String authToken){
+        try {
+            Long uuid = jwtUtil.extractUserId(authToken.substring(7));
+            Optional<Income> income =incomeService.findById(uuid);
+            Income incomeToUpdate = income.stream().filter(t->t.getId()==incomeId).findFirst().orElse(null);
+            if(incomeToUpdate==null){
+                return new ResponseEntity<>("Income id might be wrong"+incomeId, HttpStatusCode.valueOf(400));
+            }
+            return ResponseEntity.ok(income);
+        }catch (Exception ex){
+            return new ResponseEntity<>("Something Went Wrong "+ex.getMessage(), HttpStatusCode.valueOf(400));
+        }
+    }
+
+
 
 
 
