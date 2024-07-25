@@ -11,5 +11,4 @@ import java.util.Date;
 public interface IncomeRepository extends JpaRepository<Income,Long> {
     public Date findByDate(Date date);
 
-    void delete(Long id);
 }

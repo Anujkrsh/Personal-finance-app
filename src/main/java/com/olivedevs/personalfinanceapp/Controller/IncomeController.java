@@ -63,14 +63,17 @@ public class IncomeController {
     }
 
     @PutMapping("/update")
-    public ResponseEntity<?> updateIncome(long incomeId, @RequestHeader("Authorization") String authToken){
+    public ResponseEntity<?> updateIncome(long incomeId, @RequestHeader("Authorization") String authToken, @RequestBody SaveIncomeDTO income){
         try {
             Long uuid = jwtUtil.extractUserId(authToken.substring(7));
-            Optional<Income> income =incomeService.findById(uuid);
-            Income incomeToUpdate = income.stream().filter(t->t.getId()==incomeId).findFirst().orElse(null);
+            Optional<Income> incomeList =incomeService.findById(uuid);
+            Income incomeToUpdate = incomeList.stream().filter(t->t.getId()==incomeId).findFirst().orElse(null);
             if(incomeToUpdate==null){
                 return new ResponseEntity<>("Income id might be wrong"+incomeId, HttpStatusCode.valueOf(400));
             }
+            Income.builder().date(income.getDate()).id(incomeToUpdate.getId()).userId(uuid).source(income.getSource())
+                    .description(income.getDescription()).amount(income.getAmount()).build();
+            incomeService.save(incomeToUpdate);
             return ResponseEntity.ok(income);
         }catch (Exception ex){
             return new ResponseEntity<>("Something Went Wrong "+ex.getMessage(), HttpStatusCode.valueOf(400));

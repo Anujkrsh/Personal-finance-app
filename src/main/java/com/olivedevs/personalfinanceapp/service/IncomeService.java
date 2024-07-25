@@ -33,7 +33,7 @@ public class IncomeService {
     }
 
     public void delete(Long id) {
-        incomeRepository.delete(id);
+        incomeRepository.deleteById(id);
     }
 
 }
