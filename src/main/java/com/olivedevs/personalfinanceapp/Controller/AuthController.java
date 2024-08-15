@@ -21,18 +21,17 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/auth")
 public class AuthController {
 
+    private final UserService userService;
+    private final AuthenticationManager authenticationManager;
+    private final JwtUtil jwtUtil;
+    private final PasswordEncoder passwordEncoder;
     @Autowired
-    private UserService userService;
-
-    @Autowired
-    private AuthenticationManager authenticationManager;
-
-    @Autowired
-    private JwtUtil jwtUtil;
-
-
-    @Autowired
-    private PasswordEncoder passwordEncoder;
+    public AuthController(UserService userService, AuthenticationManager authenticationManager, JwtUtil jwtUtil, PasswordEncoder passwordEncoder) {
+        this.userService = userService;
+        this.authenticationManager = authenticationManager;
+        this.jwtUtil = jwtUtil;
+        this.passwordEncoder = passwordEncoder;
+    }
 
     @PostMapping("/register")
     public ResponseEntity<?> register(@RequestBody User user) {
@@ -67,7 +66,6 @@ public class AuthController {
 
     @GetMapping("/logout")
     public ResponseEntity<?> logout() {
-        // Logic for logout
-        return ResponseEntity.ok("Logout successful");
+        return ResponseEntity.ok("P.S Not implemented stateless implementation");
     }
 }
