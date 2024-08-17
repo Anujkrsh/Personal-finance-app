@@ -9,12 +9,10 @@ import java.util.List;
 
 @Service
 public class BudgetService {
-    private final BudgetRepository budgetRepository;
 
     @Autowired
-    public BudgetService(BudgetRepository budgetRepository) {
-        this.budgetRepository = budgetRepository;
-    }
+    private BudgetRepository budgetRepository;
+
 
     public Budget save(Budget budget) {
         return budgetRepository.save(budget);
