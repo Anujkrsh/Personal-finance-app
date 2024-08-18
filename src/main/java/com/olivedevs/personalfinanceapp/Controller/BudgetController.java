@@ -45,7 +45,8 @@ public class BudgetController {
     public ResponseEntity<?>  createBudget(@RequestHeader("Authorization") String authToken) {
         try {
             Long uuid = jwtUtil.extractUserId(authToken.substring(7));
-            List<Budget> budgets= budgetRepository.findBudgetById(uuid);
+            List<Budget> budgets= budgetRepository.findByUserId(uuid);
+            if(budgets.isEmpty()) {return new ResponseEntity<>("Oh Ho! No budget Created", HttpStatusCode.valueOf(402));}
             return new ResponseEntity<>(budgets, HttpStatusCode.valueOf(200));
         }catch(Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
