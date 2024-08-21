@@ -37,7 +37,7 @@ public class JWTRequestFilter extends OncePerRequestFilter {
         String jwt = null;
         String id=null;
 
-        if (request.getRequestURI().startsWith("/api/auth/")) {
+        if (request.getRequestURI().startsWith("/api/auth/")||request.getRequestURI().startsWith("/api/budget/convert")) {
             filterChain.doFilter(request, response);
             return;
         }
